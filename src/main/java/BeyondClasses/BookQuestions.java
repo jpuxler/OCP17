@@ -2,8 +2,8 @@ package BeyondClasses;
 
 public class BookQuestions {
 
-    // 1: A, B, C (-A): Iguana does not compile, as it declares a static field with the same name as an instance field. Records are implicitly final and cannot be marked abstract, which is why Gecko compiles and Chameleon does not, making option B
-    // correct. Notice in Gecko that records are not required to declare any fields. BeardedDragon also compiles, as records may ovveride any accessor jmethods, making option D correct. Newt does not compile because records are immutable, so any
+    // 1: A, B, C (-A, -C, D): Iguana does not compile, as it declares a static field with the same name as an instance field. Records are implicitly final and cannot be marked abstract, which is why Gecko compiles and Chameleon does not, making option B
+    // correct. Notice in Gecko that records are not required to declare any fields. BeardedDragon also compiles, as records may override any accessor methods, making option D correct. Newt does not compile because records are immutable, so any
     // mutator methods that modify fields are not permitted. Overriding the equals() method is alloweod, though.
     // 2: A, B, E (D) The code compiles without issue, so option G is incorrect. The blank can be filled with any class or interface that is a supertype of TurtleFrog. Option A is the direct superclass of TurtleFrog, and option B is the same class,
     // so both are correct. BrazilianHornedFrog is not a superclass of TurtleFrog, so option C is incorrect.
@@ -44,15 +44,31 @@ public class BookQuestions {
     //18: ??? (E) Diet is an inner class, which requires an instance of Deer to instantiate. Since the main() method is static, there is no such isntance. Therefore, the main() method does not compile, and option E is correct.
     // If a reference to Deer were used, such as calling new Deer().new Diet(), then the code would compile and print b at runtime.
     //19: G
-    //20: B, F,
-    //21: ???
-    //22: C, D, F
-    //23: F
-    //24: B, D,
-    //25: C, E,
-    //26: ???
-    //27: A, B,
-    //28: B, D,
-    //29: E
-    //30: A, C, F
+    //20: B, F, (A, -B, D) Polymorphism is the property of an object to take on many forms. Part of polymorphism is that methods are replaced through overriding wherever they are called, regardless of whether they're in a parent or child class.
+    // For this reason, option A is correct, and option E is incorrect. With hidden static methods, Java relies on the location and reference type to determine which method is called, making option B incorrect and option F correct. Finally,
+    // making a method final, not  static, prevents it from being overridden, making option D correct and option C incorrect.
+    //21: ??? (F) The record defines an overloaded constructor using parentheses, not a compact one. For this reason, the first line must be a call to another constructor, such as this(500, "Acme", LocalDate.now()). For this reason,
+    // the code does not compile and option F is correct. If the parentheses were removed from the constructor to declare a compact constructor, then options A, C and E would be correct.
+    //22: C, D, F (-F, G) Option C correctly creates an isntance of an inner class Cub using an instance of the outer class Lion. Options A, B, E and H use incorrect syntax for creating an instance of the Cub class.
+    // Options D and G correctly create an instance of the static nested Den class, which does not require an instance of Lion, while option F uses invalid syntax.
+    //23: F (D, -F) First, if an class or interface inherits two interfaces containing default methods with the same signature, it must override the method with its own implementation. The Penguin class does this correctly,
+    // so option E is incorrect. The way to access an inherited default method is by using the syntax Swim.super.perform(), making option D correct. We agree that the syntax is bizarre, but you need to learn it.
+    // Options A, B, and C are incorrect and result in compiler errors.
+    //24: B, D, (-D, E) Line 3 does not compile because the static method hunt() cannot access an abstract instance method getName(), making option B correct. Line 6 does not compile because the private static
+    // method sneak() cannot access the priavte instance method roar(), making option E correct. The rest of the lines compile without issue.
+    //25: C, E, (B, -C, -E) Zebra.this.x is the correct way to refer to x in the Zebra class. Line 5 defines an abstract local class within a method, while line 11 defines a concrete anonymous class that extends the Stripes class.
+    // The code compiles without issue and prints x is 24 at runtime, making option B the correct answer.
+    //26: ??? (C, F) Enums are required to have a semicolon (;) after the list of values if there is anythin else in the enum. Don't worry; you won't be expected to track down missing semicolons on the whole exam - only on enum questions.
+    // For this reason, line 5 should have a semicolon after it since it is the end of the lsit of enums, making option F correct. Enum constructors are implicitly private, making option C correct as well. The rest of the enum compiles without issue.
+    //27: A, B, (-A, C, D, G) The compiler inserts an accessor for each field, a constructor containing all of the fields in the order they are declared, and useful implementations of equals(), hasCode(), and toString(),
+    // making options B,C,D and G correct. Option A is incorrect, as the compiler would only insert a no-argument constructor if the record had no fields. Option E is incorrect, as records are immutable.
+    // Option F is also incorrect and not a property of records.
+    //28: B, D, (A) Camel does not compile because the travel() method does not declare a body, nor is it marked abstract, making option A correct. EatsGrass also does not compile because an interface method cannot be marked both
+    // private and abstract, making option B correct. Finally, Eagle does not compile because it declares an abstract method soar() in a concrete class, making option D correct. The other classes compile without issue.
+    //29: E (-E, F) The code does not compile, so options A through C are incorrect. Both lines 5 and 12 do not compile, as this(9 is used instead of this. Remember this() refers to calling a constructor, wherreas this is a reference to the
+    // current isntance. Next, the compiler does not allow casting to an unrelated class type. Since Orangutan is not a subclass of Primate, the cast on line 15 is invalid, and the code does not compile. Due to these three lines containing
+    // compilation errors, option F is the correct answer.
+    //30: A, C, F (-A, E, -F) Bird and its nested Flamingo subclass compile without issue. The permits clause is optional if the subclass is nested or declared in the same file. For this reason, Monkey and its subclass Mandrill also compile
+    // without issue. EmperorTamarin does not compile, as it is missing a non-sealed, sealed, or final modifier, making option C coccrect. Friendly also does not compile, since it list a subclas Silly that does not extend it, making option E correct.
+    // While the permits clause is optional, the extends clause is not. Silly compiles jsut fine. Even though it does not extend Friendly, the compiler error is in the sealed class.
 }
